@@ -1,0 +1,27 @@
+<view class="page__hd">
+     <button class="weui-btn" type="primary" bindtap='back'>返回</button>
+</view>
+<view class="page__bd">
+    <view class="weui-form-preview"  wx:for="{{searchData}}" data-item="item" wx:key="_id" >
+        <view class="weui-form-preview__hd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">打开日期</view>
+                <view class="weui-form-preview__value_in-hd">{{item.date}}</view>
+            </view>
+        </view>
+        <view class="weui-form-preview__bd">
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">打开时间</view>
+                <view class="weui-form-preview__value">{{item.time}}</view>
+            </view>
+            <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">是否通宵</view>
+                <view class="weui-form-preview__value">{{item.overTime}}</view>
+            </view>
+        </view>
+        <view class="weui-form-preview__ft">
+            <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</navigator>
+        </view>
+    </view>
+     
+</view>

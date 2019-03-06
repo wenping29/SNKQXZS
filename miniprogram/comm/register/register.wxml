@@ -1,0 +1,48 @@
+
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">绰号</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" value='{{name}}' maxlength='18'  bindinput="namebindinputchange"  type="text" placeholder="请输入绰号"/>
+    </view>
+</view>
+<view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">国家/地区</view>
+    </view>
+    <view class="weui-cell__bd">
+        <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
+            <view class="weui-select weui-select_in-select-after">{{countries[countryIndex]}}   </view>
+        </picker>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">用户工号</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" maxlength='18' bindinput="userCodebindinputchange" value='{{userCode}}' type="text" placeholder="请输入用户工号"/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+      <view class="weui-label">查询密码</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input"  maxlength='10' bindinput="passwordbindinputchange"  value='{{password}}' type="tel" placeholder="请输入查询密码"/>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+      <view class="weui-label">爱好</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input class="weui-input" maxlength='18' bindinput="likethingbindinputchange"  value='{{likething}}' type="tel" placeholder="请输入爱好"/>
+    </view>
+</view>
+<view class="weui-btn-area">
+    <button class="weui-btn" type="primary" loading='{{loading}}' bindtap='register'>注册</button>
+    <button class="weui-btn" type="primary" bindtap='back'>返回</button>
+</view>
+

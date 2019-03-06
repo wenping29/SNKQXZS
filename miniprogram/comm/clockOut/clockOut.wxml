@@ -1,0 +1,46 @@
+<view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">工号</view>
+    </view>
+    <view class="weui-cell__bd">
+        <view class="weui-label">{{userCode}}</view>
+    </view>
+</view>
+<view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+        <view class="weui-label">日期</view>
+    </view>
+    <view class="weui-cell__bd">
+        <picker mode="date" value="{{date}}" start="2019-01-01" end="{{endDate}}" bindchange="bindDateChange">
+            <view class="weui-input">{{date}}</view>
+        </picker>
+    </view>
+</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">是否通宵</view>
+        <view class="weui-cell__ft">
+            <switch bindchange='overTimeChange' checked='{{overTime}}' />
+        </view>
+    </view>
+</view>
+<view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+        <view class="weui-label">时间</view>
+    </view>
+    <view class="weui-cell__bd">
+        <picker mode="time" value="{{time}}" start="01:00" end="23:59" bindchange="bindTimeChange">
+            <view class="weui-input">{{time}}</view>
+        </picker>
+    </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" 
+    disabled="{{closeTimeEnable}}" 
+    loading="{{loading}}" 
+    bindtap='closeTime'>打开下班
+  </button>
+  <button class="weui-btn" type="primary" bindtap='search'>查询</button>
+</view>
+</view>

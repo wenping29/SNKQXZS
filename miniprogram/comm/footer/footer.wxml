@@ -1,0 +1,12 @@
+<view class="weui-footer">
+    <view class="weui-footer__links">
+        <navigator href="./grid.html"  class="weui-footer__link">SN考勤小助手</navigator>
+    </view >
+    <view class="weui-footer__text">Copyright  2008-2016 </view >
+</view>
+<!-- <view class="weui-footer weui-footer_fixed-bottom">
+    <view class="weui-footer__links">
+        <navigator href="./grid.html"  class="weui-footer__link">SN考勤小助手</navigator>
+    </view >
+    <view class="weui-footer__text">Copyright  2008-2016 </view >
+</view> -->

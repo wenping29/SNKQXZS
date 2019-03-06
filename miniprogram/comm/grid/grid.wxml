@@ -1,0 +1,14 @@
+<view class="weui-grids">
+    <block>
+        <navigator  url="./../../pages/index/index?title=查询投入度" class="weui-grid" hover-class="weui-grid_active">
+            <image class="weui-grid__icon" src="./../../images/icon_intro.png" />
+            <view class="weui-grid__label">查询投入度</view>
+        </navigator >
+    </block>
+    <block>
+        <navigator  url="./../../pages/index/index?title=打开下班" class="weui-grid" bindtap='click("打开下班")' hover-class="weui-grid_active">
+            <image class="weui-grid__icon" src="./../../images/icon_intro.png" />
+            <view class="weui-grid__label">打开下班</view>
+        </navigator >
+    </block>
+</view>

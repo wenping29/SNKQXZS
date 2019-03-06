@@ -1,0 +1,22 @@
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">工号</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input  class="weui-input"  bindinput="codebindinput" value='{{userCode}}' maxlength='18'  placeholder="工号" auto-focus >{{userCode}}</input>
+    </view>
+</view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">密码</view>
+    </view>
+    <view class="weui-cell__bd">
+        <input  class="weui-input"  password='true'  value='{{userPassWord}}'    maxlength='10' bindinput="pwdbindinput"  placeholder="密码" auto-focus >{{userPassWord}}</input>
+    </view>
+</view>
+
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" loading='{{loading}}' bindtap='login'>登录 </button>
+  <button class="weui-btn" type="primary" bindtap='register' >注册</button>
+</view>
+

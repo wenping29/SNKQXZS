@@ -1,0 +1,4 @@
+@import './../../weui.wxss'
+.weui-grids{
+  padding-top: 20px;
+}
