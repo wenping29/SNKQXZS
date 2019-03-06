@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "header": "./../../comm/header/header",
+    "footer": "./../../comm/footer/footer",
+    "clockOut":"./../../comm/clockOut/clockOut",
+    "grid": "./../../comm/grid/grid",
+    "login": "./../../comm/login/login",
+    "register": "./../../comm/register/register",
+    "search": "./../../comm/search/search",
+    "result": "./../../comm/result/result"
+  }
+ 
+}

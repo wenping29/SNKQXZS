@@ -1,0 +1,11 @@
+
+<header> </header>
+<view>
+  <clockOut wx:if="{{currentPage=='clockOut'}}" bind:search='searchHandler'></clockOut>
+  <grid  wx:if="{{currentPage=='grid'}}"/>
+  <login bind:login="loginHandler" bind:register='registerHandler'  wx:if="{{currentPage=='login'}}"/>
+  <register bind:back="backHandler" bind:registerPageHandler="registerPageHandler" wx:if="{{currentPage=='register'}}"/>
+  <search bind:showResult='showResultHandler' bind:back='backhomeHandler'  wx:if="{{currentPage=='search'}}"/>
+  <result dataSource="{{searchData}}" bind:back='backGridHandler' wx:if="{{currentPage=='result'}}"/>
+</view>
+<footer></footer>
