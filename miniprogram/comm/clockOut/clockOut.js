@@ -63,6 +63,13 @@ Component({
         openid: openid
       })
       let that = this
+      console.log({
+        userCode: that.userCode,
+        date: that.date,
+        overTime: that.data.overTime,
+        time: that.time,
+        openid: openid
+      })
       that.setData({ loading: true, closeTimeText: "完成打开" })
       wx.cloud.callFunction({
         // 云函数名称
@@ -71,7 +78,7 @@ Component({
         data: {
           userCode: that.userCode,
           date: that.date,
-          overTime: that.overTime,
+          overTime: that.data.overTime,
           time: that.time,
           openid: openid
         },
