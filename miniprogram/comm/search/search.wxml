@@ -4,6 +4,16 @@
         <input class="weui-input" type="tel"  bindinput="bindinput" value='{{userPassWord}}' placeholder="请输入查询密码"/>
     </view>
 </view>
+<view class="weui-cell">
+    <view class="weui-cell__hd">
+        <view class="weui-label">查询月份</view>
+    </view>
+    <view class="weui-cell__bd">
+        <picker mode="date" fields="month" value="{{date}}" start="2019-03" end="{{date}}" >
+            <view class="weui-input">{{date}}</view>
+        </picker>
+    </view>
+</view>
 <view class="weui-btn-area">
      <button class="weui-btn" loading='{{loading}}' type="primary" bindtap='search'>查询投入度</button>
      <button class="weui-btn" type="primary" bindtap='back'>返回</button>
