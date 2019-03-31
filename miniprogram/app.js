@@ -2,7 +2,7 @@
 import uitl from './uitls'
 var userCode = wx.getStorage('userCode')
 var openid = wx.getStorage('openid')
-console.log(userCode,'userCode')
+// console.log(userCode,'userCode')
 let userInfo = null
 if (userCode && openid){
   userInfo = {
@@ -10,7 +10,7 @@ if (userCode && openid){
     openid
   }
 }
-console.log(userInfo)
+// console.log(userInfo)
 App({
   globalData:{
     userInfo: userInfo
@@ -31,7 +31,7 @@ App({
             that.globalData.userInfo = {}
           }
           that.globalData.userInfo.openid = res.code
-          console.log(that.globalData.userInfo)
+          // console.log(that.globalData.userInfo)
 
           typeof cb == "function" && cb(that.globalData.userInfo)
 

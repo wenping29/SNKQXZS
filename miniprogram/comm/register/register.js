@@ -33,23 +33,23 @@ Component({
     },
     likethingbindinputchange(e){
       this.setData({ likething:e.detail.value})
-      console.log(this.data,'likething')
+      // console.log(this.data,'likething')
     },
     passwordbindinputchange(e) {
       this.setData({ password: e.detail.value })
-      console.log(this.data, 'password')
+      // console.log(this.data, 'password')
     },
     userCodebindinputchange(e) {
       this.setData({ userCode: e.detail.value })
-      console.log(this.data, 'userCode')
+      // console.log(this.data, 'userCode')
     },
     bindCountryChange(e) {
       this.setData({ countryIndex: e.detail.value })
-      console.log(this.data, 'countryIndex')
+      // console.log(this.data, 'countryIndex')
     },
     namebindinputchange(e) {
       this.setData({ name: e.detail.value })
-      console.log(this.data, 'name')
+      // console.log(this.data, 'name')
     }
   }
 })

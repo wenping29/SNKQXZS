@@ -30,7 +30,7 @@ exports.main = async (event, context) => {
     }
   } else {
    return  await db.collection('userTable').where({ usercode: event.userCode, password: event.userPassWord }).count().then(res => {
-      console.log(res.total)
+      // console.log(res.total)
       if (res.total > 0) {
         result = {
           mgs: "登录成功",

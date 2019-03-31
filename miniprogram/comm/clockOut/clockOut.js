@@ -47,29 +47,29 @@ Component({
     bindTimeChange(e) {
       this.setData({ time: e.detail.value })
       this.time = e.detail.value
-      console.log(this.date)
+      // console.log(this.date)
     },
     bindDateChange(e) {
       this.setData({ date: e.detail.value })
       this.date = e.detail.value
-      console.log(this.date)
+      // console.log(this.date)
     },
     closeTime() {
       const openid = app.globalData.userInfo.openid
-      console.log({
-        userCode: this.userCode,
-        date: this.date,
-        time: this.time,
-        openid: openid
-      })
+      // console.log({
+      //   userCode: this.userCode,
+      //   date: this.date,
+      //   time: this.time,
+      //   openid: openid
+      // })
       let that = this
-      console.log({
-        userCode: that.userCode,
-        date: that.date,
-        overTime: that.data.overTime,
-        time: that.time,
-        openid: openid
-      })
+      // console.log({
+      //   userCode: that.userCode,
+      //   date: that.date,
+      //   overTime: that.data.overTime,
+      //   time: that.time,
+      //   openid: openid
+      // })
       that.setData({ loading: true, closeTimeText: "完成打开" })
       wx.cloud.callFunction({
         // 云函数名称
@@ -83,15 +83,15 @@ Component({
           openid: openid
         },
         success: function (res) {
-          console.log(res.result) // 3
+          // console.log(res.result) // 3
           if (res.result.errMsg === "collection.add:ok") {
-            console.log('success,success')
+            // console.log('success,success')
             // app.globalData.userInfo.userCode = that.userCode
             // that.triggerEvent('login', res.result.data, {})
             wx.showToast('打开成功')
             that.setData({ loading: false, closeTimeText: "完成打开", closeTimeEnable: false })
           } else {
-            console.log('failure,failure')
+            // console.log('failure,failure')
             that.setData({ loading: false, closeTimeText: "完成打开", closeTimeEnable: false })
             wx.showToast({
               title: res.result.msg,
@@ -104,7 +104,7 @@ Component({
       })
     },
     overTimeChange(e) {
-      console.log(e)
+      // console.log(e)
       this.setData({ overTime: e.detail.value })
     }
   }

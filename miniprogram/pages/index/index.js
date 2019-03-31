@@ -36,7 +36,7 @@ Page({
         })
       }
     })
-    console.log(options, 'options')
+    // console.log(options, 'options')
     if (options.title === '打开下班') {
       this.setData({ currentPage: 'clockOut' })
     } else if (options.title === '查询投入度') {
@@ -51,13 +51,13 @@ Page({
   },
   backGridHandler(){
     this.setData({ currentPage: 'grid' })
-    console.log('backGridHandler')
+    // console.log('backGridHandler')
   },
   registerHandler(e){
     this.setData({ currentPage:'register'})
   },
   registerPageHandler(e){
-    console.log('registerPageHandler', e.detail)
+    // console.log('registerPageHandler', e.detail)
     let that = this
     wx.cloud.callFunction({
       // 云函数名称
@@ -71,8 +71,8 @@ Page({
         usercode: e.detail.userCode
       },
       success: function (res) {
-        console.log(res.result) // 
-       
+        // console.log(res.result) // 
+      //  
         if (res && res.result){
           if (res.result.errMsg) {
             if (res.result.errMsg ==='collection.add:ok'){
@@ -117,7 +117,7 @@ Page({
     this.setData({ currentPage: 'search' })
   },
   showResultHandler(e){
-    console.log(e,'showResultHandler')
+    // console.log(e,'showResultHandler')
     this.setData({ currentPage: 'result', searchData:e.detail.data.data })
   }
 })

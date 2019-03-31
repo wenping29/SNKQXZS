@@ -19,7 +19,7 @@ Component({
    */
   methods: {
     click(e){
-      console.log(e)
+      // console.log(e)
     }
   }
 })

@@ -5,13 +5,13 @@ cloud.init()
 const db = cloud.database()
 
 exports.main = async (event, context, callback) => {
-  console.log(event)
+  // console.log(event)
   const result = {}
   let count = await db.collection('dateRec').where({
     userid: event.userCode,
     date: event.date
   }).count()
-  console.log(count, 'countcountcountcountcountcountcount')
+  // console.log(count, 'countcountcountcountcountcountcount')
   if (count.total > 0) {
     return {
       msg: '已经打过卡了',

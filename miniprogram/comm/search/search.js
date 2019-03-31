@@ -23,17 +23,17 @@ Component({
    */
   methods: {
     bindinput(e){
-      this.userPassWord = e.detail.value
-      console.log(e.detail,'e.detail')
+      this.data.userPassWord = e.detail.value
+      // console.log(e.detail,'e.detail')
 
     },
     search(){
       
       let that = this
       let userCoe = app.globalData.userInfo.userCode
-      let userPassWord = this.userPassWord
-      console.log(userCoe,'userCoe')
-      console.log(userPassWord,'userPassWord')
+      let userPassWord = this.data.userPassWord
+      // console.log(userCoe,'userCoe')
+      // console.log(this,'userPassWord')
       this.setData({ loading:true})
       // this.triggerEvent('showResult', {}, {})
       wx.cloud.callFunction({
@@ -45,7 +45,7 @@ Component({
           userPassWord: userPassWord
         },
         success: function (res) {
-          console.log(res.result) // 
+          // console.log(res.result) // 
           that.setData({ loading: false })
           if (res && res.result.msg && res.result.msg ==='密码错误'){
             wx.showToast({

@@ -47,7 +47,7 @@ Component({
     },
     login(){
       const that = this
-      console.log(this.data.userCode, this.data.userPassWord)
+      // console.log(this.data.userCode, this.data.userPassWord)
       that.setData({ loading: true, closeTimeText: "完成打开" })
       // let that = this
       wx.cloud.callFunction({
@@ -59,10 +59,10 @@ Component({
           userPassWord: that.data.userPassWord
         },
         success: function (res) {
-          console.log(res.result) // 3
+          // console.log(res.result) // 3
           if (res.result.data.value === 1){
             // console.log()
-            console.log(app.globalData)
+            // console.log(app.globalData)
             app.globalData.userInfo.userCode = that.data.userCode
             that.setData({ loading: false, closeTimeText: "完成打开" })
             wx.setStorage({
