@@ -39,7 +39,7 @@
   <button class="weui-btn" type="primary" 
     disabled="{{closeTimeEnable}}" 
     loading="{{loading}}" 
-    bindtap='closeTime'>打开下班
+    bindtap='closeTime'>打卡下班
   </button>
   <button class="weui-btn" type="primary" bindtap='search'>查询</button>
 </view>

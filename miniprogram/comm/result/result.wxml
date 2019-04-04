@@ -13,13 +13,13 @@
     <view class="weui-form-preview"  wx:for="{{searchData}}" data-item="item" wx:key="_id" >
         <view class="weui-form-preview__hd">
             <view class="weui-form-preview__item">
-                <view class="weui-form-preview__label">打开日期</view>
+                <view class="weui-form-preview__label">打卡日期</view>
                 <view class="weui-form-preview__value_in-hd">{{item.date}}</view>
             </view>
         </view>
         <view class="weui-form-preview__bd">
             <view class="weui-form-preview__item">
-                <view class="weui-form-preview__label">打开时间</view>
+                <view class="weui-form-preview__label">打卡时间</view>
                 <view class="weui-form-preview__value">{{item.time}}</view>
             </view>
             <view class="weui-form-preview__item">
@@ -28,7 +28,7 @@
             </view>
         </view>
         <view class="weui-form-preview__ft">
-            <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</navigator>
+            <view url="" bindtap='operate' data-item='{{item}}' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</view>
         </view>
     </view>
      

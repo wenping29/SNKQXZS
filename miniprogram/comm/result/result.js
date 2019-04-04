@@ -46,9 +46,11 @@ Component({
     // console.log(this.formatDuring(avgSum))
     // console.log(new Date(parseInt(avgSum * 1000)).toLocaleString().replace(/:\d{1,2}$/, ' '))
     // this.setData('avgDate', this.formatDuring(avgSum))
-    this.setData({
-      avgDate: this.formatDuring(avgSum)
-    })
+    if (avgSum ) {
+      this.setData({
+        avgDate: this.formatDuring(avgSum)
+      })
+    }
   },
   /**
    * 组件的方法列表
@@ -63,6 +65,9 @@ Component({
       var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = parseInt((mss % (1000 * 60)) / 1000) ;
       return  hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+    },
+    operate(data) {
+      console.log(data)
     }
   }
 })
