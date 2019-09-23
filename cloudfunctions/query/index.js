@@ -4,20 +4,14 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 exports.main = async (event, context, callback) => {
-  try{
-
-    // userCode: userCoe,
-      // userPassWord: userPassWord
-    // console.log(event)
+  try {
     const result = {}
-
+    console.log(event)
     let count = await db.collection('userTable').where({
-      name: event.userCode ,
+      usercode: event.userCode ,
       password: event.userPassWord
-
     }).count()
-
-    // console.log(count, 'countcountcountcountcountcountcount')
+    // console.log(count)
     if (count.total > 0) {
       
     } else {
@@ -29,19 +23,15 @@ exports.main = async (event, context, callback) => {
     count = await db.collection('dateRec').where({
       userid: event.userCode
     }).count()
-
-    // console.log(count, 'countcountcountcountcountcountcount')
     if (count.total == 0) {
       return {
         msg: '无结果',
         value: 0
       }
     } else {
-      // console.log(event.userCode)
       let data1 = await db.collection('dateRec').where({
         userid: event.userCode
-      }).limit(100).get()
-
+      }).orderBy('date', 'desc').limit(40).get()
       let dateNow = ''
       if (event.searchDate){
         dateNow = event.searchDate
@@ -65,18 +55,12 @@ exports.main = async (event, context, callback) => {
         }
         dateNow = new Date().Format('yyyy-MM')
       }
-      // console.log(dateNow,'dateNow')
-      // console.log(data1, 'data1')
       let data2 = []
-      // data1 = data1.filter(v => {
-      //   console.log(v,'v')
-      //   return v.date.indexOf(dateNow) > 0})
       for (let dataIndex = 0; dataIndex < data1.data.length; dataIndex++) {
         if (data1.data[dataIndex].date.indexOf(dateNow) >= 0) {
           data2.push(data1.data[dataIndex])
         }
       }
-      // console.log(data2, 'data12')
       return {
         msg: '',
         value: 1,
@@ -89,5 +73,4 @@ exports.main = async (event, context, callback) => {
       value:4
     }
   }
-
 };

@@ -13,7 +13,7 @@ Component({
    */
   data: {
     searchData:[],
-    
+    onOff: true
   },
   attached() {
     // console.log(this.data.dataSource,'attached() {')
@@ -68,6 +68,14 @@ Component({
     },
     operate(data) {
       console.log(data)
+      var onOff = this.data.onOff;
+      this.setData({ onOff: !onOff });
+    },
+    modalConfirm() {
+      console.log('modalConfirm')
+    },
+    modalCancel() {
+      console.log('modalCancel')
     }
   }
 })

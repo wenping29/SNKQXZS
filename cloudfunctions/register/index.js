@@ -4,13 +4,10 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 exports.main = async (event, context, callback) => {
-  // console.log(event.usercode)
   const result = {}
   let count = await db.collection('userTable').where({
     usercode: event.usercode // 填入当前用户 openid
   }).count()
-
-  // console.log(count,'countcountcountcountcountcountcount')
   if (count.total >0) {
     return {
       msg:'已经注册',

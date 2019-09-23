@@ -59,15 +59,20 @@ Component({
           userPassWord: that.data.userPassWord
         },
         success: function (res) {
-          // console.log(res.result) // 3
+          console.log(res.result) // 3
           if (res.result.data.value === 1){
-            // console.log()
+            // console.log(that)
             // console.log(app.globalData)
             app.globalData.userInfo.userCode = that.data.userCode
             that.setData({ loading: false, closeTimeText: "完成打开" })
-            wx.setStorage({
+            // wx.setStorage({
+            //   userCode: that.data.userCode,
+            //   openid: app.globalData.userInfo.openid
+            // })
+            app.globalData.saveLogInfo({
               userCode: that.data.userCode,
-              openid: app.globalData.userInfo.openid
+              password: that.data.userPassWord,
+              openid: res.result.openid
             })
             that.triggerEvent('login', res.result.data,{})
           } else if (res.result.data.value === 2) {

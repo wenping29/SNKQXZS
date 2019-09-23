@@ -42,12 +42,12 @@ Component({
       let that = this
       let userCoe = app.globalData.userInfo.userCode
       let userPassWord = this.data.userPassWord
-      // console.log(userCoe,'userCoe')
-      // console.log({
-      //   userCode: userCoe,
-      //   searchDate: this.date,
-      //   userPassWord: userPassWord
-      // },'userPassWord')
+      console.log(userCoe,'userCoe')
+      console.log({
+        userCode: userCoe,
+        searchDate: this.date,
+        userPassWord: userPassWord
+      },'userPassWord')
       this.setData({ loading:true})
       // this.triggerEvent('showResult', {}, {})
       wx.cloud.callFunction({

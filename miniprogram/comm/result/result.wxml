@@ -5,7 +5,7 @@
     <view class="weui-form-preview">
       <view class="weui-form-preview__hd">
           <view class="weui-form-preview__item">
-              <view class="weui-form-preview__label">平均下班时间</view>
+              <view class="weui-form-preview__label">平均加班时长</view>
               <view class="weui-form-preview__value_in-hd">{{avgDate}}</view>
           </view>
       </view>
@@ -29,6 +29,8 @@
         </view>
         <view class="weui-form-preview__ft">
             <view url="" bindtap='operate' data-item='{{item}}' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</view>
+            <modal title="标题" confirm-text="确认" cancel-text="取消" hidden="onOff" bindconfirm="modalConfirm" bindcancel="modalCancel">这里是会话内容
+</modal>
         </view>
     </view>
      

@@ -22,7 +22,7 @@
         <view class="weui-label">用户工号</view>
     </view>
     <view class="weui-cell__bd">
-        <input class="weui-input" maxlength='18' bindinput="userCodebindinputchange" value='{{userCode}}' type="text" placeholder="请输入用户工号"/>
+        <input class="weui-input" maxlength='18'  type='idcard'   bindinput="userCodebindinputchange" value='{{userCode}}'  placeholder="请输入用户工号"/>
     </view>
 </view>
 <view class="weui-cell">
@@ -30,7 +30,7 @@
       <view class="weui-label">查询密码</view>
     </view>
     <view class="weui-cell__bd">
-        <input class="weui-input"  maxlength='10' bindinput="passwordbindinputchange"  value='{{password}}' type="tel" placeholder="请输入查询密码"/>
+        <input class="weui-input"  maxlength='10'  type='idcard'   bindinput="passwordbindinputchange"  value='{{password}}' placeholder="请输入查询密码"/>
     </view>
 </view>
 <view class="weui-cell">

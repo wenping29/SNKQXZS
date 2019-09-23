@@ -1,73 +1,75 @@
 //app.js
 import uitl from './uitls'
-var userCode = wx.getStorage('userCode')
-var openid = wx.getStorage('openid')
-// console.log(userCode,'userCode')
-let userInfo = null
-if (userCode && openid){
-  userInfo = {
-    userCode,
-    openid
+let userInfo = {}
+console.log(userInfo, 'userInfo')
+const getLogInfo = function() {
+  try {
+    var userCode = wx.getStorage('userCode')
+    var openid = wx.getStorage('openid')
+    console.log(userCode, 'userCode')
+    var password = wx.getStorage('password')
+    // let userInfo = null
+    if (userCode && openid && password) {
+      userInfo = {
+        userCode,
+        openid
+      }
+      return {
+        userCode,
+        password,
+        openid
+      }
+    }
+    if (value) {
+      // Do something with return value
+    }
+    return null
+  } catch (e) {
+    // Do something when catch error
+    return null
+  }
+}
+
+const saveLogInfo =function (data) {
+  try {
+    for(var key in data) {
+      wx.setStorageSync(key, data[key])
+    }
+    console.log(data)
+  } catch (e) { 
+
   }
 }
 // console.log(userInfo)
 App({
   globalData:{
-    userInfo: userInfo
+    userInfo: userInfo,
+    saveLogInfo: saveLogInfo,
+    getLogInfo: getLogInfo
   },
   getUserInfo: function (cb){
-    var that = this;
-    userinfo: {
-      userCode,
-      openid
-    }
-    if (that.globalData.userInfo) {
-      typeof cb == "function" && cb(that.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.login({
-        success: function (res) {
-          if (!that.globalData.userInfo){
-            that.globalData.userInfo = {}
-          }
-          that.globalData.userInfo.openid = res.code
-          // console.log(that.globalData.userInfo)
-
-          typeof cb == "function" && cb(that.globalData.userInfo)
-
-
- 
-        }
-      });
-    }
-    // wx.login({
-    //   success: function (res) {
-    //     console.log(res)
-    //     wx.getUserInfo({
-    //       success: function (res) {
-    //         var userInfo = res.userInfo
-    //         var nickName = userInfo.nickName
-    //         var avatarUrl = userInfo.avatarUrl
-    //         var gender = userInfo.gender //性别 0：未知、1：男、2：女 
-    //         var province = userInfo.province
-    //         var city = userInfo.city
-    //         var country = userInfo.country
-    //         this.globalData.userInfo = userInfo
-    //         userInfo.openid = res.code
-    //         console.log(userInfo)
-    //       }
-    //     })
-    //   }
-    // });
-
+    // var that = this;
+    // userinfo: {
+    //   userCode,
+    //   openid
+    // }
+    // if (that.globalData.userInfo) {
+    //   typeof cb == "function" && cb(that.globalData.userInfo)
+    // } else {
+    // }
   },
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs) 
-    this.globalData = {}
-
+    // console.log(JSON.stringify(this.globalData), 'this.globalData')
+    // this.globalData = {}
+    console.log(JSON.stringify(this.globalData), 'this.globalData')
+    let userinfo_ = getLogInfo()
+    console.log(userinfo_, 'get userinfo_传给云函数的参数')
+    // console.log(res.result, '传给云函数的参数') // 3
+    // currentPage: 'login'
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -75,6 +77,23 @@ App({
         traceUser: true,
       })
     }
-
+    if (userinfo_) {
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: 'login',
+        // 传给云函数的参数
+        data: {
+          userCode: userinfo_.userCode,
+          userPassWord: userinfo_.userPassWord
+        },
+        success: function (res) {
+          console.log(res.result, '传给云函数的参数') // 3
+          if (res.result.data.value === 1) {
+            this.globalData.currentPage = 'clockOut'
+          }
+        },
+        fail: console.error
+      })
+    }
   }
 })

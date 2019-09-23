@@ -6,6 +6,7 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     requestResult: '',
     searchData:[],
     currentPage:'login'
@@ -17,7 +18,19 @@ Page({
     var that = this
   },
   onLoad: function(options) {
-  
+    // 查看是否授权
+    // wx.getSetting({
+    //   success(res) {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //       wx.getUserInfo({
+    //         success: function (res) {
+    //           console.log(res.userInfo)
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
     let that = this
     if (!wx.cloud) {
       wx.redirectTo({
@@ -36,12 +49,17 @@ Page({
         })
       }
     })
-    // console.log(options, 'options')
-    if (options.title === '打开下班') {
+    if(app.globalData.currentPage === 'clockOut') {
       this.setData({ currentPage: 'clockOut' })
-    } else if (options.title === '查询投入度') {
-      this.setData({ currentPage: 'search' })
+    } else {
+      // console.log(options, 'options')
+      if (options.title === '打开下班') {
+        this.setData({ currentPage: 'clockOut' })
+      } else if (options.title === '查询投入度') {
+        this.setData({ currentPage: 'search' })
+      }
     }
+
   },
   backHandler(){
     this.setData({ currentPage: 'login' })
@@ -119,5 +137,20 @@ Page({
   showResultHandler(e){
     // console.log(e,'showResultHandler')
     this.setData({ currentPage: 'result', searchData:e.detail.data.data })
+  },
+  bindGetUserInfo(e) {
+    console.log(e.detail.userInfo)
+    // wx.getSetting({
+    //   success(res) {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //       wx.getUserInfo({
+    //         success: function (res) {
+    //           console.log(res.userInfo)
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   }
 })
