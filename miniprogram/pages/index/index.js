@@ -9,7 +9,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     requestResult: '',
     searchData:[],
-    currentPage:'login'
+    currentPage:'login',
+    showLoginPage: true
   },
   onGetUserInfo:function(res){
     this.avatarUrl = res.detail.userInfo.avatarUrl
@@ -18,19 +19,6 @@ Page({
     var that = this
   },
   onLoad: function(options) {
-    // 查看是否授权
-    // wx.getSetting({
-    //   success(res) {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //       wx.getUserInfo({
-    //         success: function (res) {
-    //           console.log(res.userInfo)
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
     let that = this
     if (!wx.cloud) {
       wx.redirectTo({
@@ -55,8 +43,10 @@ Page({
       // console.log(options, 'options')
       if (options.title === '打开下班') {
         this.setData({ currentPage: 'clockOut' })
+        this.setData({ showLoginPage: false })
       } else if (options.title === '查询投入度') {
         this.setData({ currentPage: 'search' })
+        this.setData({ showLoginPage: false })
       }
     }
 
@@ -124,33 +114,63 @@ Page({
   },
   loginHandler(e){
     if (e.detail.value == 1) {
-      // this.data.currentPage = 'clockOut'
       this.setData({ currentPage:'clockOut'})
-      // wx.navigateTo({
-      //   url: './../checkForm/checkForm',
-      // })
+      this.setData({ showLoginPage: false })
     }
   },
   searchHandler(e){
     this.setData({ currentPage: 'search' })
+    this.setData({ showLoginPage: false })
   },
   showResultHandler(e){
-    // console.log(e,'showResultHandler')
     this.setData({ currentPage: 'result', searchData:e.detail.data.data })
   },
   bindGetUserInfo(e) {
-    console.log(e.detail.userInfo)
-    // wx.getSetting({
-    //   success(res) {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-    //       wx.getUserInfo({
-    //         success: function (res) {
-    //           console.log(res.userInfo)
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    let that = this
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'getUserInfo',
+      // 传给云函数的参数
+      data: {
+        nickName: e.detail.userInfo.nickName
+      },
+      success: function (res) {
+        let userinf = {}
+        
+        if (res.result.value == '1' && res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)) {
+          let item = res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)
+          userinf.userCode = item.usercode
+          userinf.password = item.password
+          userinf.openid = res.result.openid
+          userinf.nickName = item.nickName
+          that.setData({ userInfo: userinf })
+          // 存储至localstore
+          app.globalData.saveLogInfo({
+            userCode: item.usercode,
+            password: item.usercode,
+            openid: item.usercode,
+          })
+          //设置全局userinfo
+          app.globalData.userInfo.userCode = item.usercode
+          app.globalData.userInfo.password = item.usercode
+          app.globalData.userInfo.openid = item.usercode
+          app.globalData.userInfo.nickName = item.nickName
+
+          console.log(this.userInfo)
+          that.setData({ currentPage: 'clockOut' })
+          that.setData({ showLoginPage: false })
+        } else {
+          console.log(res, 'res')
+          that.setData({ currentPage: 'login' })
+          that.setData({ showLoginPage: false })
+          app.globalData.userInfo.nickName = res.result.event.nickName
+        }
+      },
+      fail: function (res) {
+        console.log('fail')
+        that.setData({ currentPage: 'login' })
+        that.setData({ showLoginPage: false })
+      }
+    })
   }
 })

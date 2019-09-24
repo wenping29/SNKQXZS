@@ -23,33 +23,37 @@ exports.main = async (event, context) => {
       mgs: "用户未注册",
       value: 0
     }
-    return {
-      openid: wxContext.OPENID,
-      appid: wxContext.APPID,
-      data: result
-    }
+    
   } else {
-   return  await db.collection('userTable').where({ usercode: event.userCode, password: event.userPassWord }).count().then(res => {
-      // console.log(res.total)
-      if (res.total > 0) {
-        result = {
-          mgs: "登录成功",
-          value: 1
-        }
-      } else {
-        result = {
-          mgs: "密码错误",
-          value: 2
-        }
+    let count = await db.collection('userTable').where({ usercode: event.userCode, password: event.userPassWord }).count()
+    if (count.total > 0 ) {
+      result = {
+        mgs: "登录成功",
+        value: 1
       }
-      return {
-        openid: wxContext.OPENID,
-        appid: wxContext.APPID,
-        data: result
+      console.log('nickName', event.nickName )
+      // let data = await db.collection('userTable').where({ usercode: event.userCode }).get().data[0]
+      await db.collection('userTable').where({
+        usercode: event.userCode
+      }).update({
+        data: {
+          nickName: event.nickName || ''
+        },
+        success: function (res1) {
+          console.log(res1.data)
+        }
+      })
+    } else{
+      result = {
+        mgs: "密码错误",
+        value: 2
       }
-    })
- 
-
+    }
   }
-  
+  return {
+    context,
+    openid: wxContext.OPENID,
+    appid: wxContext.APPID,
+    data: result
+  }
 }

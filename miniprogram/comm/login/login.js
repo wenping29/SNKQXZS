@@ -47,8 +47,9 @@ Component({
     },
     login(){
       const that = this
-      // console.log(this.data.userCode, this.data.userPassWord)
+      console.log(app.globalData.userInfo.nickName, 'app.globalData.userInfo.nickName')
       that.setData({ loading: true, closeTimeText: "完成打开" })
+
       // let that = this
       wx.cloud.callFunction({
         // 云函数名称
@@ -56,7 +57,8 @@ Component({
         // 传给云函数的参数
         data: {
           userCode: that.data.userCode,
-          userPassWord: that.data.userPassWord
+          userPassWord: that.data.userPassWord,
+          nickName: app.globalData.userInfo.nickName
         },
         success: function (res) {
           console.log(res.result) // 3

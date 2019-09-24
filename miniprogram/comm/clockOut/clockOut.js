@@ -1,26 +1,33 @@
 // pages/clockOut/clockOut.js
 const app = getApp()
 let endDate = new Date().format('yyyy-MM-dd')
-
+// console.log(app.globalData.userInfo, 'before')
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    userCode:String
+  },
+  onLoad: function () {
+    console.log(app.globalData, 'onLoad')
+  },
+  onShow: function () {
+    console.log(app.globalData, 'onShow')
+
   },
   attached() {
-    // console.log(this.userInfo)
-    this.setData({ userInfo: app.globalData.userInfo })
+    console.log(app.globalData.getLogInfo())
+    // console.log(this.userInfo,'userInfo')
+    // this.setData({ userInfo: app.globalData.userInfo })
     this.setData({ userCode: app.globalData.userInfo.userCode })
     let datestr = new Date().format('yyyy-MM-dd')
-    this.userCode = app.globalData.userInfo.userCode
-    this.date = datestr
+    // this.userCode = app.globalData.userInfo.userCode
+    // this.date = datestr
 
     this.setData({ date: datestr })
     datestr = new Date().format('hh:mm')
     this.setData({ time: datestr })
-    this.time = datestr
+    // this.time = datestr
   },
   /**
    * 组件的初始数据
@@ -29,7 +36,7 @@ Component({
     loading: false,
     closeTimeText: '打开下班',
     closeTimeEnable: false,
-    userInfo: app.globalData.userInfo,
+    // userInfo: app.globalData.userInfo,
     userCode: '',
     endDate: endDate,
     date: '',

@@ -21,11 +21,9 @@ const getLogInfo = function() {
       }
     }
     if (value) {
-      // Do something with return value
     }
     return null
   } catch (e) {
-    // Do something when catch error
     return null
   }
 }
@@ -40,7 +38,6 @@ const saveLogInfo =function (data) {
 
   }
 }
-// console.log(userInfo)
 App({
   globalData:{
     userInfo: userInfo,
@@ -48,28 +45,15 @@ App({
     getLogInfo: getLogInfo
   },
   getUserInfo: function (cb){
-    // var that = this;
-    // userinfo: {
-    //   userCode,
-    //   openid
-    // }
-    // if (that.globalData.userInfo) {
-    //   typeof cb == "function" && cb(that.globalData.userInfo)
-    // } else {
-    // }
   },
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs) 
-    // console.log(JSON.stringify(this.globalData), 'this.globalData')
-    // this.globalData = {}
     console.log(JSON.stringify(this.globalData), 'this.globalData')
     let userinfo_ = getLogInfo()
-    console.log(userinfo_, 'get userinfo_传给云函数的参数')
-    // console.log(res.result, '传给云函数的参数') // 3
-    // currentPage: 'login'
+    // console.log(userinfo_, 'get userinfo_传给云函数的参数')
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
