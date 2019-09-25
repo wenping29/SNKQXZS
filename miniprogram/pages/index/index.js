@@ -121,6 +121,7 @@ Page({
     this.setData({ currentPage: 'result', searchData:e.detail.data.data })
   },
   bindGetUserInfo(e) {
+    // console.log(e)
     let that = this
     wx.cloud.callFunction({
       // 云函数名称
@@ -131,7 +132,7 @@ Page({
       },
       success: function (res) {
         let userinf = {}
-        
+        // console.log(res, 'res')
         if (res.result.value.value == '1' && res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)) {
           let item = res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)
           userinf.userCode = item.usercode
@@ -142,22 +143,23 @@ Page({
           // 存储至localstore
           app.globalData.saveLogInfo({
             userCode: item.usercode,
-            password: item.usercode,
-            openid: item.usercode,
+            password: item.password,
+            openid: res.result.openid,
           })
-          //设置全局userinfo
-          app.globalData.userInfo.userCode = item.usercode
-          app.globalData.userInfo.password = item.usercode
-          app.globalData.userInfo.openid = item.usercode
-          app.globalData.userInfo.nickName = item.nickName
-
+          // console.log(app.globalData.userInfo, 'app.globalData.userInfo')
           that.setData({ currentPage: 'clockOut' })
           that.setData({ showLoginPage: false })
+          //设置全局userinfo
+          app.globalData.userInfo.userCode = item.usercode
+          app.globalData.userInfo.password = item.password
         } else {
           that.setData({ currentPage: 'login' })
           that.setData({ showLoginPage: false })
-          app.globalData.userInfo.nickName = res.result.event.nickName
         }
+        //设置全局userinfo
+        app.globalData.userInfo.openid = res.result.openid
+        app.globalData.userInfo.nickName = res.result.event.nickName
+        // console.log(app.globalData.userInfo, 'app.globalData.userInfo')
       },
       fail: function (res) {
         that.setData({ currentPage: 'login' })

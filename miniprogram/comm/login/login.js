@@ -39,6 +39,13 @@ Component({
     login(){
       const that = this
       that.setData({ loading: true, closeTimeText: "完成打开" })
+      // console.log('loginfo', app.globalData.userInfo)
+      console.log('loginfo', {
+        userCode: that.data.userCode,
+        userPassWord: that.data.userPassWord,
+        openid: app.globalData.userInfo.openid,
+        nickName: app.globalData.userInfo.nickName
+      })
       wx.cloud.callFunction({
         // 云函数名称
         name: 'login',
@@ -46,9 +53,11 @@ Component({
         data: {
           userCode: that.data.userCode,
           userPassWord: that.data.userPassWord,
+          openid: app.globalData.userInfo.openid,
           nickName: app.globalData.userInfo.nickName
         },
         success: function (res) {
+          console.log('登陆成功', res)
           if (res.result.data.value === 1){
             app.globalData.userInfo.userCode = that.data.userCode
             that.setData({ loading: false, closeTimeText: "完成打开" })

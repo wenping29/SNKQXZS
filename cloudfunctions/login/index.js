@@ -30,10 +30,22 @@ exports.main = async (event, context) => {
         value: 1
       }
       await db.collection('userTable').where({
+        openid: event.openid
+      }).update({
+        data: {
+          nickName: '',
+          openid: ''
+        },
+        success: function (res1) {
+        }
+      })
+
+      await db.collection('userTable').where({
         usercode: event.userCode
       }).update({
         data: {
-          nickName: event.nickName
+          nickName: event.nickName,
+          openid: event.openid
         },
         success: function (res1) {
         }
