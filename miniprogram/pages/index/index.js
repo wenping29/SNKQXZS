@@ -40,7 +40,6 @@ Page({
     if(app.globalData.currentPage === 'clockOut') {
       this.setData({ currentPage: 'clockOut' })
     } else {
-      // console.log(options, 'options')
       if (options.title === '打开下班') {
         this.setData({ currentPage: 'clockOut' })
         this.setData({ showLoginPage: false })
@@ -59,13 +58,11 @@ Page({
   },
   backGridHandler(){
     this.setData({ currentPage: 'grid' })
-    // console.log('backGridHandler')
   },
   registerHandler(e){
     this.setData({ currentPage:'register'})
   },
   registerPageHandler(e){
-    // console.log('registerPageHandler', e.detail)
     let that = this
     wx.cloud.callFunction({
       // 云函数名称
@@ -79,8 +76,6 @@ Page({
         usercode: e.detail.userCode
       },
       success: function (res) {
-        // console.log(res.result) // 
-      //  
         if (res && res.result){
           if (res.result.errMsg) {
             if (res.result.errMsg ==='collection.add:ok'){
@@ -137,7 +132,7 @@ Page({
       success: function (res) {
         let userinf = {}
         
-        if (res.result.value == '1' && res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)) {
+        if (res.result.value.value == '1' && res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)) {
           let item = res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)
           userinf.userCode = item.usercode
           userinf.password = item.password
@@ -156,18 +151,15 @@ Page({
           app.globalData.userInfo.openid = item.usercode
           app.globalData.userInfo.nickName = item.nickName
 
-          console.log(this.userInfo)
           that.setData({ currentPage: 'clockOut' })
           that.setData({ showLoginPage: false })
         } else {
-          console.log(res, 'res')
           that.setData({ currentPage: 'login' })
           that.setData({ showLoginPage: false })
           app.globalData.userInfo.nickName = res.result.event.nickName
         }
       },
       fail: function (res) {
-        console.log('fail')
         that.setData({ currentPage: 'login' })
         that.setData({ showLoginPage: false })
       }

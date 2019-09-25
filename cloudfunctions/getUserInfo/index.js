@@ -1,9 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-
 cloud.init()
 const db = cloud.database()
-
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -15,7 +13,6 @@ exports.main = async (event, context) => {
       value: 0
     }
   } else {
-    console.log(data)
     const data2 = await db.collection('userTable').where({ nickName: event.nickName }).get()
     let dataCopy = data2.data.map(v => {
       return v

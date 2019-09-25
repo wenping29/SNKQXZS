@@ -6,12 +6,10 @@ const db = cloud.database()
 exports.main = async (event, context, callback) => {
   try {
     const result = {}
-    console.log(event)
     let count = await db.collection('userTable').where({
       usercode: event.userCode ,
       password: event.userPassWord
     }).count()
-    // console.log(count)
     if (count.total > 0) {
       
     } else {

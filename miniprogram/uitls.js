@@ -1,7 +1,3 @@
-//app.js
-// var qcloud = require('./vendor/wafer2-client-sdk/index')
-// var config = require('./config')
-
 Date.prototype.format = function (fmt) {
   var o = {
     "M+": this.getMonth() + 1, //月份 

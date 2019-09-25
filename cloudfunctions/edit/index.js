@@ -3,7 +3,6 @@ const cloud = require('wx-server-sdk')
 // 初始化 cloud
 cloud.init()
 const db = cloud.database()
-
 exports.main = async (event, context, callback) => {
   const result = {}
   let count = await db.collection('dateRec').where({

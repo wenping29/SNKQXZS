@@ -1,10 +1,8 @@
-// comm/register/register.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
   },
 
   /**
@@ -19,13 +17,11 @@ Component({
     password:'',
     likething:''
   },
-
   /**
    * 组件的方法列表
    */
   methods: {
     register(){
-      // registerPageHandler
       this.triggerEvent('registerPageHandler', this.data, {})
     },
     back(){
@@ -33,23 +29,18 @@ Component({
     },
     likethingbindinputchange(e){
       this.setData({ likething:e.detail.value})
-      // console.log(this.data,'likething')
     },
     passwordbindinputchange(e) {
       this.setData({ password: e.detail.value })
-      // console.log(this.data, 'password')
     },
     userCodebindinputchange(e) {
       this.setData({ userCode: e.detail.value })
-      // console.log(this.data, 'userCode')
     },
     bindCountryChange(e) {
       this.setData({ countryIndex: e.detail.value })
-      // console.log(this.data, 'countryIndex')
     },
     namebindinputchange(e) {
       this.setData({ name: e.detail.value })
-      // console.log(this.data, 'name')
     }
   }
 })

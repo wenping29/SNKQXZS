@@ -1,8 +1,6 @@
 // 云函数模板
 // 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
-
 const cloud = require('wx-server-sdk')
-
 // 初始化 cloud
 cloud.init()
 const db = cloud.database()
@@ -31,16 +29,13 @@ exports.main = async (event, context) => {
         mgs: "登录成功",
         value: 1
       }
-      console.log('nickName', event.nickName )
-      // let data = await db.collection('userTable').where({ usercode: event.userCode }).get().data[0]
       await db.collection('userTable').where({
         usercode: event.userCode
       }).update({
         data: {
-          nickName: event.nickName || ''
+          nickName: event.nickName
         },
         success: function (res1) {
-          console.log(res1.data)
         }
       })
     } else{

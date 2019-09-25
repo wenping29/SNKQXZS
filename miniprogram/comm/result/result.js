@@ -1,4 +1,3 @@
-// comm/result/result.js
 Component({
   /**
    * 组件的属性列表
@@ -7,7 +6,6 @@ Component({
     dataSource:Array,
     avgDate:String
   },
-  // dataSource:[],
   /**
    * 组件的初始数据
    */
@@ -16,7 +14,6 @@ Component({
     onOff: true
   },
   attached() {
-    // console.log(this.data.dataSource,'attached() {')
     this.setData({
       searchData: this.data.dataSource
     })
@@ -32,20 +29,13 @@ Component({
       }
       return longtime
     })
-    // console.log(dateList,'dateList')
-
     let avgSum = 0 
     if (dateList){
       dateList.map(v=>{
-
         avgSum = avgSum + v
       })
       avgSum = avgSum / dayCount
     }
-    // console.log(avgSum,'avgSum')
-    // console.log(this.formatDuring(avgSum))
-    // console.log(new Date(parseInt(avgSum * 1000)).toLocaleString().replace(/:\d{1,2}$/, ' '))
-    // this.setData('avgDate', this.formatDuring(avgSum))
     if (avgSum ) {
       this.setData({
         avgDate: this.formatDuring(avgSum)
@@ -67,15 +57,12 @@ Component({
       return  hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
     },
     operate(data) {
-      console.log(data)
       var onOff = this.data.onOff;
       this.setData({ onOff: !onOff });
     },
     modalConfirm() {
-      console.log('modalConfirm')
     },
     modalCancel() {
-      console.log('modalCancel')
     }
   }
 })

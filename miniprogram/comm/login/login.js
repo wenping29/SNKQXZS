@@ -1,16 +1,10 @@
-// comm/login/login.js
-//index.js
 const app = getApp()
-
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
   },
-  
-
   /**
    * 组件的初始数据
    */
@@ -21,8 +15,6 @@ Component({
   },
   loading:false,
   onLoad:function(){
-
-
   },
 
   /**
@@ -30,7 +22,6 @@ Component({
    */
   methods: {
     register(){
-      // this.setData({})
       this.triggerEvent('register', {}, {})
     },
     codebindinput(e){
@@ -47,10 +38,7 @@ Component({
     },
     login(){
       const that = this
-      console.log(app.globalData.userInfo.nickName, 'app.globalData.userInfo.nickName')
       that.setData({ loading: true, closeTimeText: "完成打开" })
-
-      // let that = this
       wx.cloud.callFunction({
         // 云函数名称
         name: 'login',
@@ -61,16 +49,9 @@ Component({
           nickName: app.globalData.userInfo.nickName
         },
         success: function (res) {
-          console.log(res.result) // 3
           if (res.result.data.value === 1){
-            // console.log(that)
-            // console.log(app.globalData)
             app.globalData.userInfo.userCode = that.data.userCode
             that.setData({ loading: false, closeTimeText: "完成打开" })
-            // wx.setStorage({
-            //   userCode: that.data.userCode,
-            //   openid: app.globalData.userInfo.openid
-            // })
             app.globalData.saveLogInfo({
               userCode: that.data.userCode,
               password: that.data.userPassWord,
@@ -81,15 +62,12 @@ Component({
             that.setData({ loading: false, closeTimeText: "完成打开" })
             wx.showToast({
               title: '名称密码错误！',
-              // icon: 'failure',
               duration: 2000
             })
           }
         },
         fail: console.error
       })
-
     }
-
   }
 })
