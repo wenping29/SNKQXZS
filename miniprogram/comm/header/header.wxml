@@ -4,6 +4,6 @@
     </view>
     <view class="weui-media-box__bd">
         <view class="weui-media-box__title">考勤小助手</view>
-        <view class="weui-media-box__desc">记录下班时间，计算投入度</view>
+        <view class="weui-media-box__desc">记录下班时间，计算平均下班时间</view>
     </view>
 </view>

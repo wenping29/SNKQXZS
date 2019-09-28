@@ -1,8 +1,8 @@
 <view class="weui-grids">
     <block>
-        <navigator  url="./../../pages/index/index?title=查询投入度" class="weui-grid" hover-class="weui-grid_active">
+        <navigator  url="./../../pages/index/index?title=查询平均下班时间" class="weui-grid" hover-class="weui-grid_active">
             <image class="weui-grid__icon" src="./../../images/icon_intro.png" />
-            <view class="weui-grid__label">查询投入度</view>
+            <view class="weui-grid__label">查询平均下班时间</view>
         </navigator >
     </block>
     <block>

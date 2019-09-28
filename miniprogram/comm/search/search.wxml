@@ -15,6 +15,6 @@
     </view>
 </view>
 <view class="weui-btn-area">
-     <button class="weui-btn" loading='{{loading}}' type="primary" bindtap='search'>查询投入度</button>
+     <button class="weui-btn" loading='{{loading}}' type="primary" bindtap='search'>查询</button>
      <button class="weui-btn" type="primary" bindtap='back'>返回</button>
 </view>

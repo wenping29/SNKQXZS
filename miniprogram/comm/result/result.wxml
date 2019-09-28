@@ -28,9 +28,8 @@
             </view>
         </view>
         <view class="weui-form-preview__ft">
-            <view url="" bindtap='operate' data-item='{{item}}' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</view>
-            <modal title="标题" confirm-text="确认" cancel-text="取消" hidden="onOff" bindconfirm="modalConfirm" bindcancel="modalCancel">这里是会话内容
-</modal>
+            <view url="" bindtap='operate' data-item='{{item}}' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">删除</view>
+            <modal title="标题" confirm-text="确认" cancel-text="取消" hidden="onOff" bindconfirm="modalConfirm" bindcancel="modalCancel">这里是会话内容</modal>
         </view>
     </view>
      

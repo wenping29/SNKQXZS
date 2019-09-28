@@ -43,7 +43,7 @@ Page({
       if (options.title === '打开下班') {
         this.setData({ currentPage: 'clockOut' })
         this.setData({ showLoginPage: false })
-      } else if (options.title === '查询投入度') {
+      } else if (options.title === '查询平均下班时间') {
         this.setData({ currentPage: 'search' })
         this.setData({ showLoginPage: false })
       }
@@ -133,6 +133,7 @@ Page({
       success: function (res) {
         let userinf = {}
         // console.log(res, 'res')
+        let pageName = ""
         if (res.result.value.value == '1' && res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)) {
           let item = res.result.value.data.find(v => v.nickName === e.detail.userInfo.nickName)
           userinf.userCode = item.usercode
@@ -146,20 +147,22 @@ Page({
             password: item.password,
             openid: res.result.openid,
           })
-          // console.log(app.globalData.userInfo, 'app.globalData.userInfo')
-          that.setData({ currentPage: 'clockOut' })
-          that.setData({ showLoginPage: false })
+          pageName = 'clockOut'
           //设置全局userinfo
           app.globalData.userInfo.userCode = item.usercode
           app.globalData.userInfo.password = item.password
+          // console.log('123123')
         } else {
-          that.setData({ currentPage: 'login' })
-          that.setData({ showLoginPage: false })
+          pageName = 'login'
+          // console.log('34566')
         }
         //设置全局userinfo
         app.globalData.userInfo.openid = res.result.openid
         app.globalData.userInfo.nickName = res.result.event.nickName
-        // console.log(app.globalData.userInfo, 'app.globalData.userInfo')
+        console.log(pageName, app.globalData.userInfo.userCode )
+        that.setData({ currentPage: pageName })
+        that.setData({ showLoginPage: false })
+        
       },
       fail: function (res) {
         that.setData({ currentPage: 'login' })

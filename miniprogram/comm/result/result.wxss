@@ -1,1 +1,8 @@
 @import './../../weui.wxss'
+.weui-form-preview__ft{
+  height:20px;
+  line-height:20px;
+}
+.weui-form-preview__ft .weui-form-preview__btn_primary{
+
+}

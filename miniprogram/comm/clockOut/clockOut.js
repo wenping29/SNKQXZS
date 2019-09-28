@@ -7,20 +7,23 @@ Component({
   properties: {
   },
   onLoad: function () {
+    // console.log('onLoad')
   },
   onShow: function () {
-
+    // console.log('onShow')
   },
   attached() {
     this.setData({ userCode: app.globalData.userInfo.userCode })
     let datestr = new Date().format('yyyy-MM-dd')
-    this.userCode = app.globalData.userInfo.userCode
     this.date = datestr
 
     this.setData({ date: datestr })
     datestr = new Date().format('hh:mm')
-    this.setData({ time: datestr })
     this.time = datestr
+    // let code = app.globalData.userInfo.userCode
+    this.setData({ 
+      time: datestr 
+    })
   },
   /**
    * 组件的初始数据
@@ -53,6 +56,7 @@ Component({
     },
     closeTime() {
       const openid = app.globalData.userInfo.openid
+      const userCode = app.globalData.userInfo.userCode
       let that = this
       that.setData({ loading: true, closeTimeText: "完成打开" })
       wx.cloud.callFunction({
@@ -60,7 +64,7 @@ Component({
         name: 'edit',
         // 传给云函数的参数
         data: {
-          userCode: that.userCode,
+          userCode: userCode,
           date: that.date,
           overTime: that.data.overTime,
           time: that.time,

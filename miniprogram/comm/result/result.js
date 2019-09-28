@@ -1,3 +1,4 @@
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -57,10 +58,48 @@ Component({
       return  hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
     },
     operate(data) {
-      var onOff = this.data.onOff;
-      this.setData({ onOff: !onOff });
+      // var onOff = this.data.onOff;
+      // this.setData({ onOff: !onOff });
+      let that = this
+      wx.showModal({
+        title: '提示',
+        content: '确认删除？',
+        success: function (res) {
+          if (res.confirm) {
+            // console.log('用户点击确定', res, data)
+            that.deleteRec(data.target.dataset.item._id)
+          }else{
+              // console.log('用户点击取消')
+          }
+        }
+      })
+    },
+    deleteRec(recId) {
+      let that = this
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: 'deleteRec',
+        // 传给云函数的参数
+        data: {
+          userCode: app.globalData.userInfo.userCode,
+          id: recId
+        },
+        success: function (res) {
+          console.log('sucess', res)
+          wx.showToast({
+            title: '删除数据成功',
+            icon: 'loading',
+            duration: 2000
+          })
+          that.setData({
+            searchData: that.data.dataSource.filter(v => v._id != recId)
+          })
+        },
+        fail: console.error
+      })
     },
     modalConfirm() {
+      // wx.showModal(OBJECT) 
     },
     modalCancel() {
     }
